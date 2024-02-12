@@ -3,6 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { StudentModule } from './student/student.module';
+import { AdminModule } from './admin/admin.module';
+import { RoomModule } from './room/room.module';
+import { BookingModule } from './booking/booking.module';
 
 @Module({
   imports: [
@@ -17,6 +21,10 @@ import { ConfigModule } from '@nestjs/config';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    StudentModule,
+    AdminModule,
+    RoomModule,
+    BookingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
