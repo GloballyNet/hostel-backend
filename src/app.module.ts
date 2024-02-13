@@ -7,7 +7,6 @@ import { StudentModule } from './student/student.module';
 import { AdminModule } from './admin/admin.module';
 import { RoomModule } from './room/room.module';
 import { BookingModule } from './booking/booking.module';
-
 @Module({
   imports: [
     ConfigModule.forRoot(),
