@@ -7,10 +7,8 @@ import { AdminModule } from './admin/admin.module';
 import { RoomModule } from './room/room.module';
 import { BookingModule } from './booking/booking.module';
 import { dbdatasource } from './db/data.source';
-import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal:true}),
     StudentModule,
     AdminModule,
     RoomModule,
