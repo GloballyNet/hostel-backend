@@ -1,5 +1,5 @@
-import { Room } from 'src/room/entities/room.entity';
-import { Student } from 'src/student/entities/student.entity';
+import { Room } from 'src/entites/room.entity';
+import { Student } from 'src/entites/student.entity';
 import {
   Column,
   Entity,

@@ -1,5 +1,5 @@
-import { Booking } from 'src/booking/entities/booking.entity';
-import { Student } from 'src/student/entities/student.entity';
+import { Booking } from 'src/entites/booking.entity';
+import { Student } from 'src/entites/student.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
