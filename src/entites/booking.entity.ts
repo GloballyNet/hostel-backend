@@ -9,6 +9,17 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
+enum BookingStatus {
+  Pending = 'pending',
+  Approved = 'approved',
+  Rejected = 'rejected',
+  CheckedIn = 'checkedIn',
+  CheckedOut = 'checkedOut',
+  Cancelled = 'cancelled',
+  Expired = 'expired',
+  Completed = 'completed',
+}
+
 @Entity()
 export class Booking {
   @PrimaryGeneratedColumn()
@@ -20,9 +31,12 @@ export class Booking {
   @Column()
   studentId: number;
 
-  @Column()
-  bookingStatus: string; //we change this to an enum (pending, approved, rejected, checkedIn, checkedOut, cancelled, expired, completed, etc. )
-
+  @Column({
+    type: 'enum',
+    enum: BookingStatus,
+    default: BookingStatus.Pending,
+  })
+  bookingStatus: BookingStatus;
   @Column()
   checkInDate: Date;
 
