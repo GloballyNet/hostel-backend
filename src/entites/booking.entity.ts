@@ -1,5 +1,5 @@
-import { Room } from 'src/room/entities/room.entity';
-import { Student } from 'src/student/entities/student.entity';
+import { Room } from 'src/entites/room.entity';
+import { Student } from 'src/entites/student.entity';
 import {
   Column,
   Entity,
@@ -8,6 +8,17 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+
+enum BookingStatus {
+  Pending = 'pending',
+  Approved = 'approved',
+  Rejected = 'rejected',
+  CheckedIn = 'checkedIn',
+  CheckedOut = 'checkedOut',
+  Cancelled = 'cancelled',
+  Expired = 'expired',
+  Completed = 'completed',
+}
 
 @Entity()
 export class Booking {
@@ -20,9 +31,12 @@ export class Booking {
   @Column()
   studentId: number;
 
-  @Column()
-  bookingStatus: string; //we change this to an enum (pending, approved, rejected, checkedIn, checkedOut, cancelled, expired, completed, etc. )
-
+  @Column({
+    type: 'enum',
+    enum: BookingStatus,
+    default: BookingStatus.Pending,
+  })
+  bookingStatus: BookingStatus;
   @Column()
   checkInDate: Date;
 
