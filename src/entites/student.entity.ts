@@ -32,6 +32,9 @@ export class Student {
   dateOfBirth: Date;
 
   @Column()
+  password:string;
+
+  @Column()
   phone: string;
 
   @Column()
