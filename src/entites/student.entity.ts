@@ -2,12 +2,14 @@ import { Booking } from 'src/entites/booking.entity';
 import { Room } from 'src/entites/room.entity';
 import {
   Column,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Complaint } from './complaint.entity';
 
@@ -29,10 +31,7 @@ export class Student {
   email: string;
 
   @Column()
-  dateOfBirth: Date;
-
-  @Column()
-  password:string;
+  dateOfBirth: string;
 
   @Column()
   phone: string;
@@ -40,13 +39,13 @@ export class Student {
   @Column()
   address: string;
 
-  @Column()
+  @Column({default:new Date()})
   created_at: Date;
 
-  @Column()
+  @Column({ type: 'timestamp', nullable: true })
   updated_at: Date;
 
-  @Column()
+  @DeleteDateColumn()
   deleted_at: Date;
 
   @ManyToOne(() => Room, (room) => room.students)

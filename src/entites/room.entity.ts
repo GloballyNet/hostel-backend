@@ -11,7 +11,7 @@ export class Room {
   roomNumber: number;
 
   @Column()
-  rommType: String; //we change this to an enum
+  roomType: String;
 
   @Column()
   status: Boolean;
