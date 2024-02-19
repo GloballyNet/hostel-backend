@@ -2,6 +2,7 @@ import { Booking } from 'src/entites/booking.entity';
 import { Room } from 'src/entites/room.entity';
 import {
   Column,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -22,28 +23,33 @@ export class Student {
   @Column({ length: 100 })
   lastName: string;
 
-  @Column()
+  @Column({ nullable: true })
   age: number;
 
   @Column({ unique: true })
   email: string;
 
-  @Column()
-  dateOfBirth: Date;
+  @Column({ nullable: true })
+  dateOfBirth: string;
 
   @Column()
+  password: string;
+
+
+  @Column({ nullable: true })
   phone: string;
 
-  @Column()
+
+  @Column({ nullable: true })
   address: string;
 
-  @Column()
+  @Column({ default: new Date() })
   created_at: Date;
 
-  @Column()
+  @Column({ type: 'timestamp', nullable: true })
   updated_at: Date;
 
-  @Column()
+  @DeleteDateColumn()
   deleted_at: Date;
 
   @ManyToOne(() => Room, (room) => room.students)

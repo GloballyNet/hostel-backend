@@ -7,12 +7,20 @@ import { AdminModule } from './admin/admin.module';
 import { RoomModule } from './room/room.module';
 import { BookingModule } from './booking/booking.module';
 import { dbdatasource } from './db/data.source';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
     StudentModule,
     AdminModule,
     RoomModule,
     BookingModule,
+    AuthModule,
     TypeOrmModule.forRoot(dbdatasource),
   ],
   controllers: [AppController],
