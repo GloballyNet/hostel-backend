@@ -18,13 +18,13 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload:{id:number}) {
+  async validate(payload:{id:number}):Promise<Student> {
     const { id } = payload;
 
     const user = await this.studentsRepository.findOne({where:{id}});
 
     if (!user) {
-      throw new UnauthorizedException('Login first to access this endpoint.');
+      throw new UnauthorizedException();
     }
 
     return user;
