@@ -24,7 +24,7 @@ export class StudentsService {
     return this.studentsRepository.save(student);
   }
 
-  async update(id: number, studentData: Partial<Student>): Promise<Student> {
+  async update(id: number, studentData: Partial<StudentDto>): Promise<Student> {
     const existingStudent = await this.studentsRepository.findOne({ where: { id } });
     
     if (!existingStudent) {

@@ -1,4 +1,4 @@
-import { IsDate, IsEmail, IsEmpty, IsInt, IsNotEmpty, IsOptional, IsString, Length, Max, Min } from 'class-validator';
+import { IsDate, IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, Length, Max, Min } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class StudentDto {
