@@ -22,7 +22,7 @@ export class AuthService {
         return bcrypt.hash(password, 12);
     }
 
-    async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
+    async signUp(signUpDto: SignUpDto): Promise<Student> {
         const { password, ...rest } = signUpDto;
         const hashedPassword = await this.hashPassword(password);
 
@@ -31,12 +31,7 @@ export class AuthService {
             password: hashedPassword,
         });
 
-        await this.studentsRepository.save(newStudent);
-
-        const payload = { id: newStudent.id };
-        const token = this.jwtService.sign(payload);
-
-        return { token };
+        return this.studentsRepository.save(newStudent);
     }
 
     async validateStudent(email: string, pass: string): Promise<StudentWithoutPassword | null> {

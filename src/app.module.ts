@@ -8,6 +8,8 @@ import { RoomModule } from './room/room.module';
 import { BookingModule } from './booking/booking.module';
 import { dbdatasource } from './db/data.source';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -18,6 +20,7 @@ import { ConfigModule } from '@nestjs/config';
     AdminModule,
     RoomModule,
     BookingModule,
+    AuthModule,
     TypeOrmModule.forRoot(dbdatasource),
   ],
   controllers: [AppController],
