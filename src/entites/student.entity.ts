@@ -9,7 +9,6 @@ import {
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
 import { Complaint } from './complaint.entity';
 
@@ -24,22 +23,27 @@ export class Student {
   @Column({ length: 100 })
   lastName: string;
 
-  @Column()
+  @Column({ nullable: true })
   age: number;
 
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   dateOfBirth: string;
 
   @Column()
+  password: string;
+
+
+  @Column({ nullable: true })
   phone: string;
 
-  @Column()
+
+  @Column({ nullable: true })
   address: string;
 
-  @Column({default:new Date()})
+  @Column({ default: new Date() })
   created_at: Date;
 
   @Column({ type: 'timestamp', nullable: true })
