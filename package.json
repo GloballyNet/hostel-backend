@@ -24,13 +24,13 @@
     "migration:revert": "npm run typeorm -- migration:revert",
     "migration:show": "npm run typeorm -- migration:show",
     "migration:pending": "npm run typeorm migration:run"
-    
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^7.4.0",
     "@nestjs/typeorm": "^9.0.1",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
