@@ -2,6 +2,12 @@ import { Booking } from 'src/entites/booking.entity';
 import { Student } from 'src/entites/student.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
+export enum RoomType {
+  SINGLE = 'SINGLE',
+  DOUBLE = 'DOUBLE',
+  SUITE = 'SUITE',
+}
+
 @Entity()
 export class Room {
   @PrimaryGeneratedColumn()
@@ -11,16 +17,19 @@ export class Room {
   roomNumber: number;
 
   @Column()
-  rommType: String; //we change this to an enum
+  capacity: number;
+
+  @Column({
+    type: 'enum',
+    enum: RoomType,
+  })
+  roomType: RoomType;
 
   @Column()
-  status: Boolean;
+  available: boolean;
 
   @Column()
-  hostelId: number;
-
-  @Column()
-  description: String;
+  description: string;
 
   @Column()
   created_at: Date;
