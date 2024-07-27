@@ -1,6 +1,7 @@
 import { Repository, DataSource } from 'typeorm';
 import { CreateRoomDto } from './room.dto';
 import { Room } from 'src/entites/room.entity';
+import { RoomType } from 'src/enums/room.enum';
 
 export class RoomRepository extends Repository<Room> {
   constructor(private dataSource: DataSource) {
@@ -25,7 +26,25 @@ export class RoomRepository extends Repository<Room> {
   }
 
   async getRoomById(id: number): Promise<Room> {
-    return this.findOneBy({id});
+    return this.findOneBy({ id });
+  }
+
+  async deleteRoom(id: number): Promise<void> {
+    const room = await this.getRoomById(id);
+    this.remove(room);
+  }
+
+  async getRoomsByType(roomType: string): Promise<Room[]> {
+    const enumRoomType =
+      RoomType[roomType.toUpperCase() as keyof typeof RoomType];
+    return this.find({ where: { roomType: enumRoomType } });
+  }
+
+  async getRoomParticipants(id: number): Promise<Room> {
+    return this.createQueryBuilder('room')
+      .leftJoinAndSelect('room.students', 'students')
+      .where('room.id = :id', { id })
+      .getOne();
   }
 
   async updateRoom(id: number, createRoomDto: CreateRoomDto): Promise<Room> {
