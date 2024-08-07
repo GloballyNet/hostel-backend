@@ -1,5 +1,5 @@
 import { Repository, DataSource } from 'typeorm';
-import { CreateRoomDto } from './room.dto';
+import { CreateRoomDto, RoomUpdateDto } from './room.dto';
 import { Room } from 'src/entites/room.entity';
 import { RoomType } from 'src/enums/room.enum';
 
@@ -47,13 +47,14 @@ export class RoomRepository extends Repository<Room> {
       .getOne();
   }
 
-  async updateRoom(id: number, createRoomDto: CreateRoomDto): Promise<Room> {
+  async updateRoom(id: number, payload: RoomUpdateDto): Promise<Room> {
     const room = await this.getRoomById(id);
-    room.roomNumber = createRoomDto.roomNumber;
-    room.capacity = createRoomDto.capacity;
-    room.roomType = createRoomDto.roomType;
-    room.available = createRoomDto.available;
-    room.description = createRoomDto.description;
+    room.roomNumber = payload.roomNumber;
+    room.capacity = payload.capacity;
+    room.roomType = payload.roomType;
+    room.available = payload.available;
+    room.description = payload.description;
+    room.students = payload.students;
     room.updated_at = new Date();
     return this.save(room);
   }

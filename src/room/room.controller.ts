@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { RoomService } from './room.service';
-import { CreateRoomDto, RoomResponseDto } from './room.dto';
+import { CreateRoomDto, RoomResponseDto, RoomUpdateDto } from './room.dto';
 import { Room } from 'src/entites/room.entity';
 
 @Controller('rooms')
@@ -24,12 +24,12 @@ export class RoomController {
     return this.roomService.getRoomById(id);
   }
 
-  @Post(':id')
+  @Put(':id')
   async updateRoom(
-    @Body() createRoomDto: CreateRoomDto,
+    @Body() roomUpdateDto: Room,
     id: number,
-  ): Promise<String> {
-    return this.roomService.updateRoom(id, createRoomDto);
+  ): Promise<Room> {
+    return this.roomService.updateRoom(id, roomUpdateDto);
   }
 
   @Post(':id/delete')

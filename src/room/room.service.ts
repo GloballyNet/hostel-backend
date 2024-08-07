@@ -1,5 +1,5 @@
 import { Inject, Injectable, Param } from '@nestjs/common';
-import { CreateRoomDto, RoomResponseDto } from './room.dto';
+import { CreateRoomDto, RoomResponseDto, RoomUpdateDto } from './room.dto';
 import { RoomRepository } from './room.repository';
 import { Room } from 'src/entites/room.entity';
 import { Mapper } from '@automapper/core';
@@ -34,10 +34,9 @@ export class RoomService {
   @ApiParam({ name: 'id', description: 'ID of room', type: Number })
   async updateRoom(
     @Param('id') id: number,
-    createRoomDto: CreateRoomDto,
-  ): Promise<String> {
-    this.roomRepository.updateRoom(id, createRoomDto);
-    return 'Room updated successfully';
+    roomUpdate: RoomUpdateDto,
+  ): Promise<Room> {
+    return this.roomRepository.updateRoom(id, roomUpdate);
   }
 
   @ApiParam({ name: 'id', description: 'ID of room', type: Number })
