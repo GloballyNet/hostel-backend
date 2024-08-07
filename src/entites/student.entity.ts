@@ -44,8 +44,10 @@ export class Student {
   updated_at: Date;
 
   @Column()
+  @Column({ nullable: true })
   deleted_at: Date;
 
+  @JoinColumn()
   @ManyToOne(() => Room, (room) => room.students)
   room: Room;
 
