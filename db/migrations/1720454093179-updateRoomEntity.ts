@@ -2,7 +2,6 @@ import { MigrationInterface, QueryRunner, TableColumn } from 'typeorm';
 
 export class UpdateRoomEntity1620309249000 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.renameColumn('room', 'status', 'available');
     await queryRunner.dropColumn('room', 'hostelId');
     await queryRunner.addColumn(
       'room',
@@ -39,6 +38,5 @@ export class UpdateRoomEntity1620309249000 implements MigrationInterface {
       }),
     );
     await queryRunner.dropColumn('room', 'capacity');
-    await queryRunner.renameColumn('room', 'available', 'status');
   }
 }
