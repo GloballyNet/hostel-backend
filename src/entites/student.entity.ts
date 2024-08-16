@@ -34,7 +34,6 @@ export class Student {
   @Column()
   updated_at: Date;
   @Column()
-  @Column({ nullable: true })
   deleted_at: Date;
   @JoinColumn()
   @ManyToOne(() => Room, (room) => room.students)
@@ -46,4 +45,6 @@ export class Student {
   complaints: Complaint[];
   @Column({ default: 'student' })
   role: string;
+  @Column()
+  password: string;
 }

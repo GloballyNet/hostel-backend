@@ -16,5 +16,4 @@ export class StudentController {
   ): Promise<Student> {
     return this.studentService.createStudent(createStudentDto);
   }
-
 }

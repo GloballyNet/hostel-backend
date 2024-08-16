@@ -8,7 +8,7 @@ export const dbdatasource: DataSourceOptions = {
   password: 'postgres',
   database: 'postgres',
   entities: ['dist/**/*.entity.js'],
-  synchronize: true,
+  synchronize: false,
   // Migration path
   migrations: ['dist/db/migrations/*.js'],
   migrationsTableName: 'migrations',
