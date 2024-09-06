@@ -13,10 +13,8 @@ export class StudentRepository extends Repository<Student> {
   }
 
   async createStudent(createStudentDto: CreateStudentDto): Promise<Student> {
-    console.log('createStudentDto', createStudentDto);
     const { password } = createStudentDto;
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log('hashedPassword', hashedPassword);
     const student = this.create({
       firstName: createStudentDto.firstName,
       lastName: createStudentDto.lastName,
